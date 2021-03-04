@@ -1,22 +1,24 @@
 HEAD := $(shell git rev-parse HEAD)
+CS := $(shell pwd)/cs
 
 .PHONY: test clean
 
-cs:
+$(CS):
 	curl -fLo cs https://git.io/coursier-cli-"$(shell uname | tr LD ld)"
-	chmod +x ./cs
+	chmod +x $(CS)
 
-test: cs clean
+test: clean $(CS)
 	sbt publishLocal
 
-	./cs bootstrap com.github.tototoshi::cshello:0.1.0-SNAPSHOT -o cshello -f
+	$(CS) bootstrap com.github.tototoshi::cshello:0.1.0-SNAPSHOT -o cshello -f
 	./cshello | grep $(HEAD)
 
-	./cs bootstrap com.github.tototoshi::cshello:0.1.0-SNAPSHOT -o cshello --standalone -f
+	$(CS) bootstrap com.github.tototoshi::cshello:0.1.0-SNAPSHOT -o cshello --standalone -f
 	./cshello | grep $(HEAD)
 
-	./cs launch com.github.tototoshi::cshello:0.1.0-SNAPSHOT -M com.github.tototoshi.cshello.Main | grep $(HEAD)
+	$(CS) launch com.github.tototoshi::cshello:0.1.0-SNAPSHOT -M com.github.tototoshi.cshello.Main | grep $(HEAD)
 
 clean:
 	sbt clean
+	rm -f $(CS)
 	rm -f cshello
