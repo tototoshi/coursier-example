@@ -6,7 +6,7 @@ val scalaVersion_2_13 = "2.13.5"
 
 lazy val root = project
   .in(file("."))
-  .enablePlugins(JavaAppPackaging, GitPlugin)
+  .enablePlugins(GitPlugin)
   .settings(
     name := "cshello",
     organization := "com.github.tototoshi",
