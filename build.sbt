@@ -14,7 +14,7 @@ lazy val root = project
     scalaVersion := scalaVersion_2_13,
     libraryDependencies ++= Seq(
       "org.slf4j" % "slf4j-api" % "1.7.32",
-      "ch.qos.logback" % "logback-classic" % "1.2.9"
+      "ch.qos.logback" % "logback-classic" % "1.2.10"
     ),
     Compile / resourceGenerators += Def.task {
       val file = (Compile / resourceManaged).value / "head.txt"
