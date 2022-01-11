@@ -2,7 +2,7 @@ import sbt._
 
 import java.nio.charset.StandardCharsets
 
-val scalaVersion_2_13 = "2.13.6"
+val scalaVersion_2_13 = "2.13.8"
 
 lazy val root = project
   .in(file("."))
